@@ -1,0 +1,22 @@
+/* ArtworkList.css */
+
+.card {
+    height: 100%;
+  }
+  
+  .card-img-top {
+    height: 100%;
+    object-fit: cover;
+  }
+  .data{
+    height: 300px;
+    overflow: hidden;
+  }
+  .card-title {
+    margin-bottom: 0; /* Remove default margin-bottom for card titles */
+  }
+  
+  .text-decoration-none {
+    text-decoration: none !important; /* Ensure link text-decoration is removed */
+  }
+  

@@ -6,6 +6,8 @@ const CommentsForm = () => {
         email: '',
         comment: ''
     });
+
+    const [commentsData, setCommentsData] = useState([]);
     const [errors, setErrors] = useState({});
 
     // Function to handle form submission
@@ -15,7 +17,13 @@ const CommentsForm = () => {
         if (Object.keys(validationErrors).length === 0) {
             // If no validation errors, handle successful form submission
             alert('Comment submitted successfully!');
-            setFormData({ name: '', email: '', comment: '' }); 
+            const newComment = {
+                ...formData,
+                timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
+            };
+            setFormData({ name: '', email: '', comment: '' });
+            setCommentsData([...commentsData, newComment]);
+
         } else {
             // Set validation errors if any
             setErrors(validationErrors); 
@@ -63,6 +71,20 @@ const CommentsForm = () => {
     return (
         <div className="container mt-4">
             <h2>Comment</h2>
+
+            {commentsData && <div className='comments-display'> {
+
+                commentsData.map((comment, index) => (
+                    <div key={index}>
+                        <p><strong>Commented By:</strong> {comment.name}</p>
+                        <p className="timestamp"><strong>Time:</strong> {comment.timestamp}</p>
+                        <p><strong>Comment</strong>: {comment.comment}</p>
+                    </div>
+                ))}
+            </div>
+            }
+
+
             <form onSubmit={handleSubmit}>
                 {/* Name input field */}
                 <div className="mb-3">
